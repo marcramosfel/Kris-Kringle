@@ -6,20 +6,28 @@ def main():
     print("  \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/  ")
     print("")
     while True:
-        print("Welcome to the greeting menu!")
-        print("1. Random by your input")
-        print("2. Random by a csv file")
-        print("3. Quit")
+        print('       +++++++++++++++++++++++++++++++++++++')
+        print("       +   Welcome to the greeting menu!   +")
+        print('       +                                   +')
+        print("       +   1. Random by your input         +")
+        print("       +   2. Random by a csv file         +")
+        print("       +   3. Quit                         +")
+        print('       +++++++++++++++++++++++++++++++++++++\n')
 
         choice = input("Enter your selection: ")
 
         if choice == "1":
             participants = secret_santa.participants_list_from_input()
-            secret_santa.suffle_participants(participants)
+            print('Shuffling participants ...')
+            secret_santa.shuffle_participants(participants)
         elif choice == "2":
             csv_file_name = input("Enter your csv file name: ")
-            participants = secret_santa.participants_list_from_csv(csv_file_name)
-            secret_santa.suffle_participants(participants)
+            try:    
+                participants = secret_santa.participants_list_from_csv(csv_file_name)
+                secret_santa.shuffle_participants(participants)
+            except IOError:
+                print('You may have selected the wrong file or writed it wrong. Try again!')
+            
         elif choice == "3":
             break
         else:

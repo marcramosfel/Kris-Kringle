@@ -16,21 +16,23 @@ def participants_list_from_input():
 
     while getting_inputs:
         # Get an input from the user
-        participant_name = input('Enter a name: ')
+        participant_name = input('Enter a name: \n(Write done for stop)')
         # Check if the user wants to stop
         if participant_name == 'done':
             getting_inputs = False
         else:
             number = str(input('Enter a number: '))
             participant_number = "+351" + number
-            # Add the input to the dict
-            participants[participant_name.title()] = participant_number
+            # Add the input to the list
+            participant = Person(participant_name.title(), participant_number)
+            participants.append(participant)
+    
     return participants
 
 def participants_list_from_csv(csv_file):
     participants = []
     # Open the CSV file
-    csv_file_complete = 'C:/Users/marco/Desktop/projects/secret-santa/.venv/Include/' + csv_file
+    csv_file_complete = 'C:/Users/marco/Desktop/projects/kris-kringle/' + csv_file
     with open(csv_file_complete, 'r') as file:
         # Create a CSV reader
         reader = csv.DictReader(file)
@@ -45,7 +47,7 @@ def participants_list_from_csv(csv_file):
             participants.append(participant)
     return participants
 
-def suffle_participants(participants):
+def shuffle_participants(participants):
     # Shuffle the list of participants randomly
     random.shuffle(participants)
 
@@ -55,7 +57,7 @@ def suffle_participants(participants):
         secret_santas[participants[i]] = participants[(i + 1) % len(participants)]
 
     # Print out the secret santa assignments
-    # for person, secret_santa in secret_santas.items():
-    #     print(f'{person.name} will be the secret santa for {secret_santa.name}')
+    for person, secret_santa in secret_santas.items():
+        print(f'{person.name} will be the secret santa for {secret_santa.name}')
 
 
