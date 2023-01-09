@@ -4,15 +4,16 @@ def main():
     print("  / \ / \ / \ / \ / \ / \ / \ / \ / \ / \ / \ / \ ")
     print(" ( S | e | c | r | e | t |   | S | a | n | t | a )")
     print("  \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/  ")
-    print("")
+    print(" ")
     while True:
-        print('       +++++++++++++++++++++++++++++++++++++')
+        print(" ")
+        print("       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+")
         print("       +   Welcome to the greeting menu!   +")
-        print('       +                                   +')
-        print("       +   1. Random by your input         +")
-        print("       +   2. Random by a csv file         +")
+        print("       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+\n       +                                   +")
+        print("       +   1. Random by your input         +\n       +                                   +")
+        print("       +   2. Random by a csv file         +\n       +                                   +")
         print("       +   3. Quit                         +")
-        print('       +++++++++++++++++++++++++++++++++++++\n')
+        print("       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+\n")
 
         choice = input("Enter your selection: ")
 
