@@ -1,4 +1,5 @@
 import secret_santa
+
 def main():
     print("   _   _   _   _   _   _   _   _   _   _   _   _ ")
     print("  / \ / \ / \ / \ / \ / \ / \ / \ / \ / \ / \ / \ ")
@@ -34,7 +35,5 @@ def main():
         else:
             print("Invalid selection. Please try again.")
             
-
-
 if __name__ == "__main__":
   main()  # Output: "This is the main function"
