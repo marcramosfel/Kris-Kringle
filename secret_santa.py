@@ -1,16 +1,27 @@
 import random
 import csv
-import whatsapp_send_participants
 
 
 class Person:
     def __init__(self, name: str, number: str) -> None:
-        self.name = name
-        self.number = number
-        self.code = self.generate_code()
+        self._name = name
+        self._number = '+351' + number
+        self._code = self.generate_code()
 
     def __repr__(self) -> str:
         return f"{self.name}, has the number {self.number}, and received this code: {self.code} to authenticate."
+
+    @property
+    def get_name(self):
+        return self._name
+
+    @property
+    def get_number(self):
+        return self._number
+
+    @property
+    def get_code(self):
+        return self._code
 
     @staticmethod
     def generate_code():
@@ -20,7 +31,7 @@ class Person:
         return code
 
 
-def participants_list_from_input():
+def get_participants_list_from_input():
     participants = []
 
     # Set a flag to indicate whether we should continue getting inputs
@@ -34,7 +45,7 @@ def participants_list_from_input():
             getting_inputs = False
         else:
             number = str(input('Enter a number: '))
-            participant_number = "+351" + number
+            participant_number = number
             # Add the input to the list
             participant = Person(participant_name.title(), participant_number)
             participants.append(participant)
@@ -42,7 +53,7 @@ def participants_list_from_input():
     return participants
 
 
-def participants_list_from_csv(csv_file):
+def get_participants_list_from_csv(csv_file):
     participants = []
     # Open the CSV file
     csv_file_complete = 'C:/Users/marcramos/Desktop/projects/kris-kringle/' + csv_file
@@ -54,14 +65,14 @@ def participants_list_from_csv(csv_file):
         for row in reader:
             # Print the values of the row
             print(row['name'], row['number'])
-            participant = Person(row['name'].title(), ('+351' + row['number']))
+            participant = Person(row['name'].title(), (row['number']))
 
             # Add the input to the dict
             participants.append(participant)
     return participants
 
 
-def shuffle_participants(participants):
+def get_shuffle_participants(participants):
     # Shuffle the list of participants randomly
     random.shuffle(participants)
 
@@ -72,7 +83,8 @@ def shuffle_participants(participants):
 
     # Print out the secret santa assignments
     for person, secret_santa in secret_santas.items():
-        print(f'{person.name} will be the secret santa for {secret_santa.name}')
-        print(person.__repr__)
+        print(type(person.get_name))
+        #print(f'{person.get_name()} will be the secret santa for {secret_santa.get_name()} and the code is {person.get_code()}.')
+        #print(person.__repr__)
 
     return secret_santas

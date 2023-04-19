@@ -2,9 +2,12 @@ from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 
 
-def create_protected_pdf(title, message, password):
+def create_protected_pdf(title, message, password, path):
     # Cria um novo arquivo PDF
-    pdf = canvas.Canvas(title + '.pdf', pagesize=letter)
+    pdf = canvas.Canvas(path, pagesize=letter)
+
+    #Cria o titulo do pdf
+    pdf.setTitle(title)
 
     # Define a senha de abertura do arquivo
     pdf.setEncrypt(password)
