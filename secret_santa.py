@@ -1,12 +1,24 @@
 import random
 import csv
+import whatsapp_send_participants
+
 
 class Person:
-    def __init__(self, name:str, number:str) -> None:
+    def __init__(self, name: str, number: str) -> None:
         self.name = name
-        self.numeber = number
+        self.number = number
+        self.code = self.generate_code()
+
     def __repr__(self) -> str:
-        return f"{self.nome}"
+        return f"{self.name}, has the number {self.number}, and received this code: {self.code} to authenticate."
+
+    @staticmethod
+    def generate_code():
+        code = ""
+        for i in range(5):
+            code += str(random.randint(0, 9))
+        return code
+
 
 def participants_list_from_input():
     participants = []
@@ -26,13 +38,14 @@ def participants_list_from_input():
             # Add the input to the list
             participant = Person(participant_name.title(), participant_number)
             participants.append(participant)
-    
+
     return participants
+
 
 def participants_list_from_csv(csv_file):
     participants = []
     # Open the CSV file
-    csv_file_complete = 'C:/Users/marco/Desktop/projects/kris-kringle/' + csv_file
+    csv_file_complete = 'C:/Users/marcramos/Desktop/projects/kris-kringle/' + csv_file
     with open(csv_file_complete, 'r') as file:
         # Create a CSV reader
         reader = csv.DictReader(file)
@@ -42,10 +55,11 @@ def participants_list_from_csv(csv_file):
             # Print the values of the row
             print(row['name'], row['number'])
             participant = Person(row['name'].title(), ('+351' + row['number']))
-            
+
             # Add the input to the dict
             participants.append(participant)
     return participants
+
 
 def shuffle_participants(participants):
     # Shuffle the list of participants randomly
@@ -59,5 +73,6 @@ def shuffle_participants(participants):
     # Print out the secret santa assignments
     for person, secret_santa in secret_santas.items():
         print(f'{person.name} will be the secret santa for {secret_santa.name}')
+        print(person.__repr__)
 
-
+    return secret_santas
